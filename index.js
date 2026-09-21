@@ -31,6 +31,8 @@
 
 import { defineTool } from '@deepseek-ai/dsh-tools'
 
+import { PLAN_OUTPUT_SCHEMA, shapePlan, summarizePlan } from './plan.js'
+
 /** Plugin name, also the service key this plugin publishes. */
 export const name = 'laya'
 
@@ -358,7 +360,17 @@ export const layaAskTool = (config) =>
  *
  * Exposed as a tool because the failure it prevents is invisible otherwise: a
  * model that asks about a long document gets a confident answer about a fragment
- * and has no way to know. This lets it look before it leaps, and costs nothing.
+ * and has no way to know. This lets it look before it leaps, and costs no
+ * inference at all.
+ *
+ * It used to estimate in JavaScript, because the sidecar served no plan route and
+ * the arithmetic that sizes the options was unreachable over HTTP. That estimate
+ * was wrong twice over: it returned `fits: null` under a boolean schema, so the
+ * tool failed output validation on *every* call, and it always returned an empty
+ * `questions` array, so it never reported the one thing it exists to report - how
+ * many tokens each option actually gets. The sidecar now serves `POST /plan` from
+ * the same `plan_questions` call `/ask` uses, so there is one implementation of
+ * the arithmetic and no estimate to disagree with it.
  */
 export const layaPlanTool = (config) =>
   defineTool({
@@ -368,7 +380,8 @@ export const layaPlanTool = (config) =>
       'model, and report exactly what would be silently cut. Use it before asking about a long ' +
       'document or a question with many options. Laya discards the tail of an oversized state and ' +
       'shortens option text until labels are indistinguishable; neither appears in its answer, so ' +
-      'this is the only way to see it in advance.',
+      'this is the only way to see it in advance. The option figures are exact; the state figure is ' +
+      'a character estimate, and the response says so with "exact": false.',
     parameters: {
       state: {
         type: 'json',
@@ -383,58 +396,17 @@ export const layaPlanTool = (config) =>
       },
     },
     output: {
-      schema: {
-        type: 'object',
-        properties: {
-          fits: { type: 'boolean' },
-          state_chars: { type: 'number' },
-          state_tokens_estimated: { type: 'number' },
-          exact: { type: 'boolean' },
-          warnings: { type: 'json' },
-          recommendation: { type: 'string' },
-          questions: { type: 'json' },
-        },
-        additionalProperties: true,
-      },
+      schema: PLAN_OUTPUT_SCHEMA,
       render: (_args, value) => [{ type: 'text', text: JSON.stringify(value, null, 2) }],
-      presentationMeta: (_args, value) => ({
-        summary: value?.fits
-          ? `laya plan: fits (${value?.state_tokens_estimated ?? '?'} state tokens est.)`
-          : `laya plan: DOES NOT FIT — ${value?.recommendation ?? 'state would be truncated'}`,
-      }),
+      presentationMeta: (_args, value) => ({ summary: summarizePlan(value) }),
     },
     isConcurrencySafe: () => true,
     execute: async (args, exec) => {
-      // The sidecar has no /plan route: planning is pure arithmetic over a
-      // capability, and duplicating the arithmetic in JavaScript is how the two
-      // implementations drift. So the tool reports the checkpoint's real limits
-      // and lets the caller reason, rather than inventing a second estimator.
-      const caps = await callSidecar(config, '/capabilities', {
+      const payload = await callSidecar(config, '/plan', {
+        body: { state: args.state, questions: args.questions },
         ...(exec?.signal ? { signal: exec.signal } : {}),
       })
-      const checkpoints = caps.checkpoints ?? {}
-      const first = Object.values(checkpoints)[0]
-      if (!first) {
-        throw new Error('the sidecar reports no loaded checkpoint; start it with a --model')
-      }
-      const stateChars = typeof args.state === 'string' ? args.state.length : JSON.stringify(args.state).length
-      const questionCount = Object.keys(args.questions ?? {}).length
-      const stateBudget = Math.max(0, (first.max_len ?? 0) - (first.head_max_len ?? 0))
-      return {
-        fits: null,
-        state_chars: stateChars,
-        state_tokens_estimated: Math.ceil((stateChars / 4) * 1.15),
-        exact: false,
-        warnings: [
-          'This is an estimate from character count, not a tokenizer. The sidecar exposes the ' +
-            'authoritative plan through its own `laya_plan` MCP tool and the `budget` field on an ' +
-            '`/ask` response.',
-        ],
-        recommendation:
-          `about ${stateBudget} tokens of state fit at head_max_len=${first.head_max_len}; ` +
-          `${questionCount} question(s) asked over ${stateChars} characters`,
-        questions: [],
-      }
+      return shapePlan(payload)
     },
   })
 
@@ -484,7 +456,8 @@ export function apply(ctx, rawConfig) {
   ctx.effect(() =>
     ctx.provide('laya', {
       ask: (body, options) => callSidecar(config, '/ask', { body, ...options }),
-      plan: (body, options) => callSidecar(config, '/capabilities', options).then((caps) => caps),
+      /** The preflight, with no forward pass. Same arithmetic `/ask` reports. */
+      plan: (body, options) => callSidecar(config, '/plan', { body, ...options }),
       health: () => runtime.health(),
       capabilities: () => callSidecar(config, '/capabilities'),
       sidecarUrl: config.sidecarUrl,
@@ -535,3 +508,4 @@ export function apply(ctx, rawConfig) {
 }
 
 export { callSidecar, isLoopback, summarize, OUTPUT_SCHEMA, shapePayload }
+export { PLAN_OUTPUT_SCHEMA, shapePlan, summarizePlan }

@@ -23,7 +23,7 @@
   },
   "files": [
     "index.js",
-    "client.js",
+    "plan.js",
     "cordis.patch.yml",
     "README.md",
     "LICENSE"
