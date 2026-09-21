@@ -54,8 +54,10 @@ const laya = ctx.get('laya')
 const result = await laya.ask({ state, questions })
 ```
 
-It exposes `ask`, `health`, `capabilities`, `sidecarUrl`, and `loopback` — the
-last being whether state stays on this machine, as a fact rather than a policy.
+It exposes `ask`, `plan`, `health`, `capabilities`, `sidecarUrl`, and `loopback`
+— the last being whether state stays on this machine, as a fact rather than a
+policy. `plan` is the preflight: the same arithmetic `/ask` reports, with no
+forward pass.
 
 **Two tools** — `laya_ask` for a batch of typed questions, and `laya_plan` to
 check the token budget before spending a forward pass.
@@ -89,15 +91,37 @@ description and the response both say so:
       config:
         sidecarUrl: 'http://127.0.0.1:8787'
         requestTimeoutMs: 120000
-        lifecycle: never      # or 'attach' to log a reachability check at load
+        lifecycle: never      # 'attach' to log a reachability check,
+                              # 'spawn' to start the sidecar yourself
+        spawnCommand: null    # required by 'spawn', e.g. ['laya-mcp', 'serve']
+        spawnTimeoutMs: 120000
         logLevel: info
 ```
 
-`lifecycle: never` starts nothing and assumes something else manages the
-sidecar. `attach` additionally checks `/health` once at load and logs what it
-found — useful when the harness and the sidecar race at startup. There is
-deliberately **no option that installs or launches Python**, because that would
-mean a plugin downloading multi-gigabyte weights without asking.
+`lifecycle` decides what happens when nothing is answering at `sidecarUrl`:
+
+| | |
+|---|---|
+| `never` | Start nothing; assume something else manages the sidecar. The default. |
+| `attach` | Also check `/health` once at load and log what it found — useful when the harness and the sidecar race at startup. |
+| `spawn` | Also run `spawnCommand` if nothing answers, then wait for it to come up. |
+
+`spawn` exists because the alternative was worse. The plugin still installs
+nothing and downloads nothing — a tool that ran `pip install` and then fetched a
+650 MB checkpoint behind your back would be hostile, and that has not changed.
+But *launching a sidecar you already installed* is a different act, and without it
+every session began by starting a Python process in a terminal by hand, and began
+failing again every time that process went away.
+
+Two rules make it safe to leave on:
+
+* A sidecar that is already answering is **attached to and never touched**, so two
+  harness sessions cannot put two models on one port.
+* A sidecar this plugin started is **stopped when the plugin unmounts**; one it did
+  not start is left exactly as it was found.
+
+There is still no option that installs anything or fetches a model, and
+`spawnCommand` has no default: this plugin will not guess at an interpreter.
 
 Pointing `sidecarUrl` somewhere that is not loopback is allowed and warns once at
 startup, naming the destination: that is the moment the privacy story changes,

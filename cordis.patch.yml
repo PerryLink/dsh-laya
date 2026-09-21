@@ -23,13 +23,37 @@
         # several seconds, so this is deliberately generous.
         requestTimeoutMs: 120000
 
-        # How hard to try to start the sidecar when it is not already running.
+        # What to do when nothing is answering at sidecarUrl.
         #   'never'  - assume something else manages it (the default)
         #   'attach' - check /health on load; log clearly, start nothing
-        # Starting a Python process that downloads multi-gigabyte weights is not
-        # something a plugin should do behind the user's back, so 'never' is the
-        # default and there is no option that silently installs anything.
+        #   'spawn'  - check /health, and if nothing answers, run spawnCommand
+        # A sidecar already answering is always attached to and never touched, so
+        # two harness sessions cannot put two models on one port. A sidecar this
+        # plugin started is stopped when the plugin unmounts; one it did not start
+        # is left exactly as it was found.
         lifecycle: never
+
+        # The command to run for lifecycle: 'spawn'. An array, argv-style.
+        #
+        # Required, with no default: this plugin does not guess at an interpreter,
+        # does not install anything and does not download weights. Launching a
+        # sidecar the operator has *already installed* is a different thing, and
+        # without it every session begins by starting a process by hand - and
+        # begins failing again every time that process dies.
+        #
+        # On Windows a console script is a `.cmd` shim, which this resolves
+        # through `cmd.exe /c`; pointing at `python -m laya_mcp` sidesteps that
+        # entirely and is what the second example does.
+        #
+        #   spawnCommand: ['laya-mcp', 'serve']
+        #   spawnCommand: ['python', '-m', 'laya_mcp', 'serve', '--model', 'english']
+        spawnCommand: null
+
+        # How long to wait for a spawned sidecar to answer /health, in
+        # milliseconds. A cold start loads the checkpoint - and on a first run
+        # downloads it - so this is generous deliberately. Timing out is reported
+        # rather than fatal: the tools begin working whenever the sidecar does.
+        spawnTimeoutMs: 120000
 
         # Log level: silent | warn | info | debug
         logLevel: info

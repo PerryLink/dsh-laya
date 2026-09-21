@@ -32,6 +32,7 @@
 import { defineTool } from '@deepseek-ai/dsh-tools'
 
 import { PLAN_OUTPUT_SCHEMA, shapePlan, summarizePlan } from './plan.js'
+import { startSidecar } from './sidecar.js'
 
 /** Plugin name, also the service key this plugin publishes. */
 export const name = 'laya'
@@ -52,6 +53,8 @@ export const DEFAULT_CONFIG = Object.freeze({
   sidecarUrl: 'http://127.0.0.1:8787',
   requestTimeoutMs: 120_000,
   lifecycle: 'never',
+  spawnCommand: null,
+  spawnTimeoutMs: 120_000,
   logLevel: 'info',
 })
 
@@ -93,9 +96,39 @@ export const Config = {
           issues: [{ message: 'requestTimeoutMs must be a positive number', path: ['requestTimeoutMs'] }],
         }
       }
-      if (!['never', 'attach'].includes(config.lifecycle)) {
+      if (!['never', 'attach', 'spawn'].includes(config.lifecycle)) {
         return {
-          issues: [{ message: "lifecycle must be 'never' or 'attach'", path: ['lifecycle'] }],
+          issues: [
+            { message: "lifecycle must be 'never', 'attach' or 'spawn'", path: ['lifecycle'] },
+          ],
+        }
+      }
+      // Validated here rather than at spawn time: a typo should be a startup
+      // failure naming the field, not a warning nobody reads after the tools
+      // have already stopped working.
+      if (config.spawnCommand !== null && config.spawnCommand !== undefined) {
+        if (
+          !Array.isArray(config.spawnCommand) ||
+          config.spawnCommand.length === 0 ||
+          config.spawnCommand.some((part) => typeof part !== 'string' || part === '')
+        ) {
+          return {
+            issues: [
+              {
+                message:
+                  'spawnCommand must be a non-empty array of non-empty strings, such as ' +
+                  '["laya-mcp", "serve"]',
+                path: ['spawnCommand'],
+              },
+            ],
+          }
+        }
+      }
+      if (!Number.isFinite(config.spawnTimeoutMs) || config.spawnTimeoutMs <= 0) {
+        return {
+          issues: [
+            { message: 'spawnTimeoutMs must be a positive number', path: ['spawnTimeoutMs'] },
+          ],
         }
       }
       if (!(config.logLevel in LEVELS)) {
@@ -475,28 +508,100 @@ export function apply(ctx, rawConfig) {
   // rather than thrown: a harness that starts before its sidecar is a normal
   // ordering, and refusing to mount would turn a transient race into a broken
   // profile. The tools surface the same condition with a precise message.
-  if (config.lifecycle === 'attach') {
+  if (config.lifecycle === 'attach' || config.lifecycle === 'spawn') {
     ctx.effect(() => {
       let cancelled = false
-      runtime
-        .health()
-        .then((health) => {
+      let started = null
+
+      const report = (health) => {
+        const checkpoints = Object.keys(health.checkpoints ?? {})
+        logger.info(
+          `[dsh-laya] sidecar ready · checkpoints=[${checkpoints.join(', ')}] · ` +
+            `calls=${health.calls ?? 0}${health.degraded ? ' · DEGRADED (running on CPU)' : ''}`,
+        )
+      }
+
+      const run = async () => {
+        // Anything already answering means we attach and own nothing. That rule
+        // is what stops two harness sessions fighting over one port, and it is
+        // why a sidecar this plugin did not start is never stopped by it.
+        try {
+          const health = await runtime.health()
           if (cancelled) return
-          const checkpoints = Object.keys(health.checkpoints ?? {})
-          logger.info(
-            `[dsh-laya] sidecar ready · checkpoints=[${checkpoints.join(', ')}] · ` +
-              `calls=${health.calls ?? 0}${health.degraded ? ' · DEGRADED (running on CPU)' : ''}`,
+          report(health)
+          return
+        } catch {
+          /* nothing is listening; only `spawn` can do something about that */
+        }
+        if (cancelled) return
+
+        if (config.lifecycle !== 'spawn') {
+          logger.warn(
+            `[dsh-laya] no sidecar at ${config.sidecarUrl}. The tools are registered and will ` +
+              'fail until you run `laya-mcp serve`. To have this plugin start it for you, set ' +
+              "lifecycle: spawn and a spawnCommand such as ['laya-mcp', 'serve'].",
           )
+          return
+        }
+        if (!Array.isArray(config.spawnCommand) || config.spawnCommand.length === 0) {
+          logger.warn(
+            '[dsh-laya] lifecycle is "spawn" but no spawnCommand is configured, so nothing was ' +
+              "started. Set one, for example spawnCommand: ['laya-mcp', 'serve'].",
+          )
+          return
+        }
+
+        started = startSidecar(config.spawnCommand[0], config.spawnCommand.slice(1), {
+          env: process.env,
+          onLine: (stream, line) => logger.debug(`[dsh-laya:${stream}] ${line}`),
         })
-        .catch((error) => {
+        if (!started.ok) {
+          logger.warn(`[dsh-laya] ${started.reason}`)
+          started = null
+          return
+        }
+        logger.info(`[dsh-laya] starting the sidecar: ${started.resolved} (pid ${started.pid})`)
+        started.onExit((code, signal) => {
           if (cancelled) return
           logger.warn(
-            `[dsh-laya] no sidecar at ${config.sidecarUrl} (${error?.message ?? error}). ` +
-              `The tools are registered and will fail until you run \`laya-mcp serve\`.`,
+            `[dsh-laya] the sidecar this plugin started exited (code=${code}` +
+              `${signal ? `, signal=${signal}` : ''}). The tools stay registered and will keep ` +
+              `failing until something answers at ${config.sidecarUrl}.`,
           )
         })
+
+        // Bounded wait. A cold sidecar spends this time loading weights - or
+        // fetching them, on a first run - and the plugin is not the right place
+        // to decide that took too long. It only has to stop waiting eventually.
+        const deadline = Date.now() + config.spawnTimeoutMs
+        while (!cancelled && Date.now() < deadline) {
+          try {
+            const health = await runtime.health()
+            if (cancelled) return
+            report(health)
+            return
+          } catch {
+            await new Promise((resolve) => setTimeout(resolve, 500))
+          }
+        }
+        if (!cancelled) {
+          logger.warn(
+            `[dsh-laya] the sidecar did not answer within ${config.spawnTimeoutMs} ms. It may ` +
+              'still be loading; the tools begin working as soon as it does.',
+          )
+        }
+      }
+
+      run().catch((error) => {
+        if (!cancelled) logger.warn(`[dsh-laya] sidecar startup failed: ${error?.message ?? error}`)
+      })
+
       return () => {
         cancelled = true
+        if (started?.ok) {
+          started.stop()
+          logger.info('[dsh-laya] stopped the sidecar this plugin started')
+        }
       }
     })
   }
