@@ -1,0 +1,35 @@
+# dsh-laya - the Cordis row.
+#
+# `insert` adds the plugin to the host composition. Every value here is a
+# default a user can override in their own patch; nothing is required, because a
+# plugin that refuses to mount until it is configured is a plugin nobody tries.
+#
+# The sidecar URL is the one setting that matters. Point it at a running
+# `laya-mcp serve` and this plugin becomes a thin, fast client of a model that is
+# already warm. Leave it unset and the plugin will try to reach the default
+# loopback port, and say clearly in its startup report when nothing is there -
+# rather than failing at the first tool call, which is where a silent
+# misconfiguration usually surfaces.
+- insert:
+    - id: laya
+      name: 'dsh-laya'
+      config:
+        # Where `laya-mcp serve` is listening. Loopback by default: the sidecar
+        # has no authentication and should not be exposed.
+        sidecarUrl: 'http://127.0.0.1:8787'
+
+        # Per-request timeout in milliseconds. Model inference is 30-500 ms once
+        # warm, but the *first* call after a cold start can pay a model load of
+        # several seconds, so this is deliberately generous.
+        requestTimeoutMs: 120000
+
+        # How hard to try to start the sidecar when it is not already running.
+        #   'never'  - assume something else manages it (the default)
+        #   'attach' - check /health on load; log clearly, start nothing
+        # Starting a Python process that downloads multi-gigabyte weights is not
+        # something a plugin should do behind the user's back, so 'never' is the
+        # default and there is no option that silently installs anything.
+        lifecycle: never
+
+        # Log level: silent | warn | info | debug
+        logLevel: info
