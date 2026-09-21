@@ -1,0 +1,32 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    name: test (node ${{ matrix.node }}, ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: ['22', '24']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      # There is no `npm install` step, and that is the point. `index.js` imports
+      # `@deepseek-ai/dsh-tools`, which resolves only inside a harness profile -
+      # which is why the plugin's contract lives in `plan.js` and imports nothing.
+      # A test that needs a harness mounted to run is a test that does not run.
+      #
+      # `npm test` rather than `node --test` on purpose: the script has been
+      # declared in package.json since the first commit, and asserting that the
+      # declared entry point actually works is half of what this job is for.
+      - run: npm test
