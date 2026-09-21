@@ -1,6 +1,6 @@
 {
   "name": "dsh-laya",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Laya typed decisions (noul / choice / score) as a first-class Cordis service and model-visible tools for DeepSeek Harness.",
   "keywords": [
     "dsh-plugin",
@@ -25,6 +25,7 @@
     "index.js",
     "plan.js",
     "sidecar.js",
+    "SKILL.md",
     "cordis.patch.yml",
     "README.md",
     "LICENSE"

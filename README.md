@@ -4,6 +4,8 @@
 `choice`, `score` — as a first-class Cordis service and model-visible tools for
 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness).
 
+[English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
+
 > **Status: 0.1.1, work in progress.** The plugin mounts and activates in the
 > Harness, and the sidecar contract it speaks is verified end-to-end on an RTX
 > 5060 (load 9.8 s, 411 ms for three questions on CUDA). It has not yet been
@@ -142,7 +144,7 @@ Calibration makes a probability honest. It cannot make a model right.
 
 | project | what it is |
 |---|---|
-| [`laya-mcp`](https://github.com/PerryLink/laya-mcp) | The Python core and sidecar: warm model, token-budget preflight, calibration store, and the MCP server. |
+| [`laya-mcp`](https://github.com/PerryLink/laya-mcp) | The Python core and sidecar: warm model, token-budget preflight, calibration store, and the MCP server. Registered as [`io.github.PerryLink/laya-mcp`](https://registry.modelcontextprotocol.io/v0.1/servers?search=perrylink) in the official MCP Registry. |
 | `dsh-laya` | This repository — the DeepSeek Harness integration. |
 | [`laya-mcp` on npm](https://www.npmjs.com/package/laya-mcp) | The Node launcher for `npx -y laya-mcp`. |
 | `laya-mcp install` | The multi-harness installer for Claude Code, Codex, opencode, OpenClaw and Hermes — a subcommand of the Python package, not a separate distribution. |
