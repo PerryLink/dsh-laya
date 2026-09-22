@@ -4,7 +4,7 @@
 
 [English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
-> **状态：0.1.1，开发中。** 插件在 Harness 中能挂载并激活，它所说的 sidecar 契约已在 RTX 5060 上端到端验证（加载 9.8 秒，CUDA 上三个问题 411 毫秒）。尚未在 CI 中经过真实模型回合的检验。
+> **状态：0.1.3，开发中。** 插件在 Harness 中能挂载并激活，它所说的 sidecar 契约已在 RTX 5060 上端到端验证（加载 9.8 秒，CUDA 上三个问题 411 毫秒）。尚未在 CI 中经过真实模型回合的检验。
 
 ---
 

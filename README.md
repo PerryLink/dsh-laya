@@ -6,7 +6,7 @@
 
 [English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
-> **Status: 0.1.1, work in progress.** The plugin mounts and activates in the
+> **Status: 0.1.3, work in progress.** The plugin mounts and activates in the
 > Harness, and the sidecar contract it speaks is verified end-to-end on an RTX
 > 5060 (load 9.8 s, 411 ms for three questions on CUDA). It has not yet been
 > exercised through a live model turn in CI.

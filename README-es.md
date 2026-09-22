@@ -4,7 +4,7 @@ Decisiones tipadas de [Laya](https://github.com/NandhaKishorM/laya) — `noul` (
 
 [English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
-> **Estado: 0.1.1, en desarrollo.** El plugin se monta y se activa en el Harness, y el contrato de sidecar que habla está verificado de extremo a extremo en una RTX 5060 (carga 9.8 s, 411 ms para tres preguntas en CUDA). Todavía no se ha ejercitado mediante un turno de modelo real en CI.
+> **Estado: 0.1.3, en desarrollo.** El plugin se monta y se activa en el Harness, y el contrato de sidecar que habla está verificado de extremo a extremo en una RTX 5060 (carga 9.8 s, 411 ms para tres preguntas en CUDA). Todavía no se ha ejercitado mediante un turno de modelo real en CI.
 
 ---
 
