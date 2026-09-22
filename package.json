@@ -53,6 +53,7 @@
     }
   },
   "scripts": {
+    "check:readmes": "node scripts/check-readme-sync.mjs",
     "test": "node --test"
   }
 }

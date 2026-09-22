@@ -30,3 +30,6 @@ jobs:
       # declared in package.json since the first commit, and asserting that the
       # declared entry point actually works is half of what this job is for.
       - run: npm test
+
+      - name: README sync (five languages)
+        run: npm run check:readmes
