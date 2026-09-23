@@ -1,4 +1,5 @@
 # dsh-laya
+[![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-laya?metric=downloads)](https://dshfind.com/plugins/PerryLink/dsh-laya?ref=badge)
 
 [Laya](https://github.com/NandhaKishorM/laya) typed decisions — `noul` (yes/no),
 `choice`, `score` — as a first-class Cordis service and model-visible tools for
