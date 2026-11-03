@@ -95,7 +95,7 @@ Repetidos de las propias mediciones del upstream, porque una integración que in
 
 La calibración hace honesta una probabilidad. No puede hacer correcto a un modelo.
 
-**Versión de DSH aplicable:** verificada con `dsh-v0.1.7-alpha.1` (la versión del host a la que apunta esta compilación); requiere `>=0.1.7-alpha.1 <0.2.0`.
+**Versión de DSH aplicable:** verificada con `dsh-v0.1.7-alpha.1` (la versión del host a la que apunta esta compilación); requiere `>=0.1.7-alpha.1 <0.3.0`.
 
 ## PerryLink DSH Plugin Family
 

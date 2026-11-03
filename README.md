@@ -141,7 +141,7 @@ above roughly 20 options.
 
 Calibration makes a probability honest. It cannot make a model right.
 
-**Applicable DSH version:** verified against `dsh-v0.1.7-alpha.1` (the host release this build targets); requires `>=0.1.7-alpha.1 <0.2.0`.
+**Applicable DSH version:** verified against `dsh-v0.1.7-alpha.1` (the host release this build targets); requires `>=0.1.7-alpha.1 <0.3.0`.
 
 ## PerryLink DSH Plugin Family
 
