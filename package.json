@@ -43,7 +43,11 @@
     "manifestVersion": 1,
     "bundle": {
       "patch": "./cordis.patch.yml"
-    }
+    },
+    "capabilities": [
+      "network:egress"
+    ],
+    "labels": []
   },
   "peerDependencies": {
     "@deepseek-ai/cordis": "^4.0.2"
