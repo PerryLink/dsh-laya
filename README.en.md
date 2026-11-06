@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-laya-flow-dark.svg">
-  <img src="docs/assets/dsh-laya-flow-light.svg" width="100%" alt="dsh-laya data flow: laya_ask → POST /ask → laya-mcp serve → noul/choice/score; laya_plan → POST /plan with no forward pass; ctx.laya also serves ask, plan, health and capabilities">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-laya-hero-en-dark.webp">
+  <img src="docs/assets/dsh-laya-hero-en-light.webp" width="100%" alt="dsh-laya local decision instrument: title and value copy on the left; on the right, the loopback laya-mcp serve panel takes state + questions and gives three typed readouts — noul 0.5457 with its uncertainty band, one chosen choice label, and a score position on an ordered scale — with state STAYS LOCAL at the foot.">
 </picture>
 
 # dsh-laya
@@ -38,6 +38,15 @@ Laya is a model that answers typed questions only: `noul` returns the probabilit
 It contributes two things to the harness: the service `ctx.laya` (`ask`, `plan`, `health`, `capabilities`, `sidecarUrl`, `loopback`), and two model-visible tools, `laya_ask` and `laya_plan`. Host code and other plugins can therefore ask for a judgment without a model round-trip, and the model can check whether a question batch fits before spending a forward pass.
 
 The default endpoint is `http://127.0.0.1:8787`: the state does not leave this machine. Pointing `sidecarUrl` elsewhere is allowed, but the startup line names the destination — that is the moment the privacy story changes.
+
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-laya-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-laya-flow-v5-light.svg" width="100%" alt="dsh-laya structure: Host and Python sidecar on opposite sides of one loopback boundary. Above, laya_plan crosses to /plan for budget arithmetic with no forward pass; below, laya_ask crosses to /ask for one forward pass and fans into three typed exits — noul probability with its band, one choice label, and a position on an ordered score scale. The default is 127.0.0.1:8787, so state STAYS LOCAL.">
+</picture>
+
+</div>
 
 ## Three-step setup
 

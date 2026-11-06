@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-laya-flow-dark.svg">
-  <img src="docs/assets/dsh-laya-flow-light.svg" width="100%" alt="dsh-laya 数据流：laya_ask → POST /ask → laya-mcp serve → noul/choice/score；laya_plan → POST /plan 不跑前向传播；ctx.laya 同时提供 ask、plan、health、capabilities">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-laya-hero-zh-dark.webp">
+  <img src="docs/assets/dsh-laya-hero-zh-light.webp" width="100%" alt="dsh-laya 本地决策仪表：左侧是标题与价值说明；右侧为 loopback 的 laya-mcp serve 面板，输入 state + questions 后给出 noul 0.5457（uncertain）、choice 选中一个标签、score 在刻度上的位置；底部标注 state STAYS LOCAL。">
 </picture>
 
 # dsh-laya
@@ -38,6 +38,15 @@ Laya 是一个只回答有类型判断的模型：`noul` 给出「真」的概�
 它向 Harness 贡献两样东西：服务 `ctx.laya`（`ask`、`plan`、`health`、`capabilities`、`sidecarUrl`、`loopback`），以及两个模型可见工具 `laya_ask` 与 `laya_plan`。于是 Host 代码和其他插件可以直接要一个判断，不必绕一趟模型；模型也能在花掉一次前向传播之前，先问 `laya_plan` 这批问题装不装得下。
 
 默认端点 `http://127.0.0.1:8787`：state 不出这台机器。把 `sidecarUrl` 指到别处是允许的，只是启动行会点名目的地——那是隐私故事改变的时刻。
+
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-laya-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-laya-flow-v5-light.svg" width="100%" alt="dsh-laya 结构图：loopback 边界两侧是 Host 与 Python sidecar；上方 laya_plan 走 /plan 做预算算术，不跑前向传播；下方 laya_ask 走 /ask 跑一次前向传播，再分成 noul 的概率与分带、choice 的标签、score 的刻度位置三条类型出口；默认 127.0.0.1:8787，state STAYS LOCAL。">
+</picture>
+
+</div>
 
 ## 三步上手
 

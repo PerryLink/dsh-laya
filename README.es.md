@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-laya-flow-dark.svg">
-  <img src="docs/assets/dsh-laya-flow-light.svg" width="100%" alt="Flujo de datos de dsh-laya: laya_ask → POST /ask → laya-mcp serve → noul/choice/score; laya_plan → POST /plan sin pase hacia delante; ctx.laya también ofrece ask, plan, health y capabilities">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-laya-hero-en-dark.webp">
+  <img src="docs/assets/dsh-laya-hero-en-light.webp" width="100%" alt="Instrumento local de decisión dsh-laya: a la izquierda, el título y el valor; a la derecha, el panel laya-mcp serve en loopback recibe state + questions y devuelve tres lecturas tipadas: noul 0.5457 con su banda de incertidumbre, una etiqueta choice elegida y una posición score en una escala ordenada, con state STAYS LOCAL al pie.">
 </picture>
 
 # dsh-laya
@@ -38,6 +38,15 @@ Laya es un modelo que solo responde preguntas tipadas: `noul` devuelve la probab
 Aporta dos cosas al harness: el servicio `ctx.laya` (`ask`, `plan`, `health`, `capabilities`, `sidecarUrl`, `loopback`) y dos herramientas visibles para el modelo, `laya_ask` y `laya_plan`. Así el código del host y otros plugins pueden pedir un juicio sin una ida y vuelta al modelo, y el modelo puede comprobar si un lote de preguntas cabe antes de gastar un pase hacia delante.
 
 El endpoint por defecto es `http://127.0.0.1:8787`: el estado no sale de esta máquina. Apuntar `sidecarUrl` a otro sitio está permitido, pero la línea de arranque nombra el destino: ese es el momento en que cambia la historia de privacidad.
+
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-laya-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-laya-flow-v5-light.svg" width="100%" alt="Estructura de dsh-laya: el Host y el sidecar de Python a ambos lados de un límite de loopback. Arriba, laya_plan cruza a /plan para la aritmética de presupuesto sin pase hacia delante; abajo, laya_ask cruza a /ask para un pase hacia delante y se abre en tres salidas tipadas: probabilidad noul con su banda, una etiqueta choice y una posición en la escala score. Por defecto es 127.0.0.1:8787, así que state STAYS LOCAL.">
+</picture>
+
+</div>
 
 ## Instalación en tres pasos
 

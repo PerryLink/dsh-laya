@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-laya-flow-dark.svg">
-  <img src="docs/assets/dsh-laya-flow-light.svg" width="100%" alt="dsh-laya डेटा प्रवाह: laya_ask → POST /ask → laya-mcp serve → noul/choice/score; laya_plan → POST /plan बिना फ़ॉरवर्ड पास; ctx.laya ask, plan, health और capabilities भी देता है">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-laya-hero-en-dark.webp">
+  <img src="docs/assets/dsh-laya-hero-en-light.webp" width="100%" alt="dsh-laya स्थानीय निर्णय उपकरण: बाईं ओर शीर्षक और मूल्य; दाईं ओर लूपबैक laya-mcp serve पैनल state + questions लेकर तीन टाइप्ड रीडिंग देता है — noul 0.5457 उसके अनिश्चितता बैंड के साथ, एक चुना हुआ choice लेबल, और क्रमबद्ध स्केल पर score स्थिति — नीचे state STAYS LOCAL।">
 </picture>
 
 # dsh-laya
@@ -38,6 +38,15 @@ Laya एक ऐसा मॉडल है जो केवल टाइप्ड
 यह harness को दो चीज़ें देता है: सेवा `ctx.laya` (`ask`, `plan`, `health`, `capabilities`, `sidecarUrl`, `loopback`) और दो मॉडल-दृश्य टूल `laya_ask` व `laya_plan`। इस तरह होस्ट कोड और अन्य प्लगइन मॉडल के एक चक्कर के बिना सीधे निर्णय माँग सकते हैं, और मॉडल एक फ़ॉरवर्ड पास खर्च करने से पहले जाँच सकता है कि प्रश्नों का बैच फ़िट होगा या नहीं।
 
 डिफ़ॉल्ट एंडपॉइंट `http://127.0.0.1:8787` है: state इस मशीन से बाहर नहीं जाता। `sidecarUrl` को कहीं और इंगित करना अनुमत है, पर स्टार्टअप लाइन गंतव्य का नाम लेती है — वही वह क्षण है जब प्राइवेसी की कहानी बदलती है।
+
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-laya-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-laya-flow-v5-light.svg" width="100%" alt="dsh-laya संरचना: एक लूपबैक सीमा के दोनों ओर Host और Python sidecar। ऊपर laya_plan बिना फ़ॉरवर्ड पास के /plan से बजट अंकगणित करता है; नीचे laya_ask एक फ़ॉरवर्ड पास के लिए /ask पर जाता है और तीन टाइप्ड निर्गमों में बँटता है — noul संभावना और उसका बैंड, एक choice लेबल, और score क्रमबद्ध स्केल पर स्थिति। डिफ़ॉल्ट 127.0.0.1:8787 है, इसलिए state STAYS LOCAL।">
+</picture>
+
+</div>
 
 ## तीन चरणों में शुरुआत
 

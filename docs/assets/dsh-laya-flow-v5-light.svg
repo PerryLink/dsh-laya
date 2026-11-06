@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="660" viewBox="0 0 1100 660" role="img" aria-labelledby="fig-title fig-desc">
+<title id="fig-title">dsh-laya: two routes cross one loopback boundary</title>
+<desc id="fig-desc">The host registers laya_plan and laya_ask. laya_plan sends POST /plan across the loopback boundary to the Python sidecar and comes back with budget arithmetic that runs no forward pass. laya_ask sends POST /ask to the same sidecar, spends one forward pass, and fans out into three typed exits: noul returns a calibrated probability with a no/uncertain/yes band, choice returns one named label, score returns a position on an ascending scale. Answers, truncation data and warnings return to the host; state stays on this machine by default at 127.0.0.1:8787. A non-loopback sidecarUrl is allowed but warns once and changes the startup line to LEAVES THIS MACHINE. plan_questions() is the shared arithmetic behind both /plan and /ask.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0.38" y2="1"><stop offset="0" stop-color="#f9f6fd"/><stop offset="1" stop-color="#e4eaf8"/></linearGradient>
+<filter id="soft" x="-30%" y="-30%" width="170%" height="190%"><feDropShadow dx="0" dy="7" stdDeviation="10" flood-color="#1b1735" flood-opacity="0.13"/></filter>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#4B67B4"/></marker>
+<marker id="arrg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#2C8A62"/></marker>
+</defs>
+<rect x="0" y="0" width="1100" height="660" rx="22" fill="url(#bg)"/>
+<circle cx="1010" cy="115" r="260" fill="#4B67B4" opacity="0.045"/>
+<circle cx="105" cy="610" r="245" fill="#6F65B9" opacity="0.035"/>
+<text x="44" y="50" fill="#171a28" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="27" font-weight="700" text-anchor="start">dsh-laya · decisions at the loopback boundary</text>
+<text x="44" y="80" fill="#4b5265" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="16" font-weight="400" text-anchor="start">Two surfaces, two routes, one boundary: budget preflight above; one forward pass below; three typed exits.</text>
+<text x="1056" y="50" fill="#7d8497" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="400" text-anchor="end">v0.1.5 · DSH plugin</text>
+<line x1="44" y1="100" x2="1056" y2="100" stroke="#e9e5f2" stroke-width="1.4"/>
+<g filter="url(#soft)"><rect x="44" y="116" width="442" height="444" rx="22" fill="#ffffff" stroke="#ddd8ec" stroke-width="1.3"/></g>
+<text x="66" y="145" fill="#171a28" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="700" text-anchor="start">HOST · DeepSeek Harness</text>
+<text x="464" y="145" fill="#4B67B4" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="700" text-anchor="end">ctx.laya</text>
+<text x="66" y="168" fill="#7d8497" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="14" font-weight="400" text-anchor="start">two tool registrations · one HTTP client</text>
+<line x1="64" y1="182" x2="466" y2="182" stroke="#e9e5f2" stroke-width="1.2"/>
+<rect x="64" y="198" width="402" height="112" rx="18" fill="#f7f8fd" stroke="#ddd8ec" stroke-width="1.3"/>
+<text x="84" y="228" fill="#171a28" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="20" font-weight="700" text-anchor="start">laya_plan</text>
+<rect x="306" y="210" width="140" height="26" rx="13.0" fill="#e9edfa"/>
+<text x="376.0" y="227.7" fill="#4B67B4" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="14" font-weight="700" text-anchor="middle">no forward pass</text>
+<text x="84" y="254" fill="#4b5265" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="15" font-weight="400" text-anchor="start">budget preflight · POST /plan</text>
+<text x="84" y="278" fill="#7d8497" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="15" font-weight="400" text-anchor="start">same batch and arithmetic as /ask</text>
+<rect x="64" y="338" width="402" height="142" rx="18" fill="#f7f8fd" stroke="#ddd8ec" stroke-width="1.3"/>
+<text x="84" y="368" fill="#171a28" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="20" font-weight="700" text-anchor="start">laya_ask</text>
+<rect x="320" y="350" width="126" height="26" rx="13.0" fill="#e9edfa"/>
+<text x="383.0" y="367.7" fill="#4B67B4" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="14" font-weight="700" text-anchor="middle">1 forward pass</text>
+<text x="84" y="394" fill="#4b5265" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="15" font-weight="400" text-anchor="start">typed batch · POST /ask</text>
+<rect x="84" y="406" width="66" height="28" rx="9" fill="#e9edfa" stroke="#ddd8ec" stroke-width="1"/>
+<text x="117.0" y="424.5" fill="#4B67B4" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="700" text-anchor="middle">noul</text>
+<rect x="160" y="406" width="78" height="28" rx="9" fill="#e9edfa" stroke="#ddd8ec" stroke-width="1"/>
+<text x="199.0" y="424.5" fill="#6F65B9" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="700" text-anchor="middle">choice</text>
+<rect x="248" y="406" width="68" height="28" rx="9" fill="#e9edfa" stroke="#ddd8ec" stroke-width="1"/>
+<text x="282.0" y="424.5" fill="#2D827B" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="700" text-anchor="middle">score</text>
+<text x="84" y="458" fill="#7d8497" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="14" font-weight="400" text-anchor="start">strict:true turns truncation into a refusal</text>
+<rect x="64" y="496" width="402" height="48" rx="14" fill="#e9edfa"/>
+<text x="82" y="518" fill="#4B67B4" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="700" text-anchor="start">ctx.laya.ask / ctx.laya.plan</text>
+<text x="82" y="537" fill="#7d8497" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="14" font-weight="400" text-anchor="start">the service surface uses the same two routes</text>
+<line x1="550" y1="128" x2="550" y2="546" stroke="#4B67B4" stroke-width="1.4" stroke-dasharray="6 7" opacity="0.55"/>
+<text x="550" y="146" fill="#4B67B4" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="700" text-anchor="middle" letter-spacing="1.4">LOOPBACK</text>
+<text x="550" y="168" fill="#4b5265" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="700" text-anchor="middle">127.0.0.1:8787</text>
+<rect x="522" y="240" width="56" height="28" rx="14.0" fill="#e9edfa" stroke="#ddd8ec" stroke-width="1"/>
+<text x="550.0" y="258.7" fill="#4B67B4" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="15" font-weight="700" text-anchor="middle">/plan</text>
+<rect x="527" y="395" width="46" height="28" rx="14.0" fill="#e9edfa" stroke="#ddd8ec" stroke-width="1"/>
+<text x="550.0" y="413.7" fill="#4B67B4" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="15" font-weight="700" text-anchor="middle">/ask</text>
+<rect x="494" y="510" width="112" height="28" rx="14.0" fill="#e6f4ed" stroke="#2C8A62" stroke-width="1"/>
+<text x="550.0" y="528.7" fill="#2C8A62" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="700" text-anchor="middle">STAYS LOCAL</text>
+<line x1="466" y1="254" x2="519" y2="254" stroke="#4B67B4" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arr)"/>
+<line x1="578" y1="254" x2="632" y2="254" stroke="#4B67B4" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arr)"/>
+<line x1="466" y1="409" x2="524" y2="409" stroke="#4B67B4" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arr)"/>
+<line x1="573" y1="409" x2="632" y2="409" stroke="#4B67B4" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arr)"/>
+<g filter="url(#soft)"><rect x="614" y="116" width="442" height="444" rx="22" fill="#ffffff" stroke="#ddd8ec" stroke-width="1.3"/></g>
+<text x="636" y="145" fill="#171a28" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="700" text-anchor="start">SIDECAR</text>
+<text x="738" y="145" fill="#7d8497" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="14" font-weight="400" text-anchor="start">Python / PyTorch</text>
+<text x="1034" y="145" fill="#4B67B4" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="700" text-anchor="end">laya-mcp serve</text>
+<text x="636" y="168" fill="#7d8497" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="14" font-weight="400" text-anchor="start">weights live here; the plugin only speaks HTTP</text>
+<line x1="636" y1="182" x2="1034" y2="182" stroke="#e9e5f2" stroke-width="1.2"/>
+<rect x="636" y="198" width="398" height="104" rx="18" fill="#f7f8fd" stroke="#ddd8ec" stroke-width="1.3"/>
+<text x="656" y="226" fill="#171a28" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="18" font-weight="700" text-anchor="start">budget arithmetic</text>
+<rect x="916" y="208" width="100" height="26" rx="13.0" fill="#e6f4ed" stroke="#2C8A62" stroke-width="1"/>
+<text x="966.0" y="225.7" fill="#2C8A62" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="700" text-anchor="middle">fits: true</text>
+<text x="656" y="248" fill="#7d8497" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="14" font-weight="400" text-anchor="start">POST /plan · no forward pass</text>
+<rect x="656" y="266" width="360" height="9" rx="4.5" fill="#e9e5f2"/>
+<rect x="656" y="266" width="150" height="9" rx="4.5" fill="#4B67B4" opacity="0.55"/>
+<rect x="809" y="266" width="92" height="9" rx="4.5" fill="#2C8A62" opacity="0.65"/>
+<rect x="904" y="266" width="112" height="9" rx="4.5" fill="#ddd8ec" opacity="0.75"/>
+<text x="656" y="290" fill="#7d8497" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="400" text-anchor="start">state ~ estimate</text>
+<text x="809" y="290" fill="#7d8497" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="400" text-anchor="start">options exact</text>
+<text x="1016" y="290" fill="#7d8497" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="400" text-anchor="end">headroom</text>
+<rect x="636" y="334" width="150" height="150" rx="18" fill="#1b2740" stroke="#4B67B4" stroke-width="1.4"/>
+<text x="652" y="358" fill="#bcc8e5" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="700" text-anchor="start">POST /ask</text>
+<circle cx="711" cy="398" r="24" fill="#4B67B4" opacity="0.16"/>
+<circle cx="711" cy="398" r="24" fill="none" stroke="#4B67B4" stroke-width="1.8"/>
+<text x="711" y="407" fill="#f4f7ff" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="26" font-weight="700" text-anchor="middle">1×</text>
+<text x="711" y="442" fill="#f4f7ff" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="14" font-weight="400" text-anchor="middle">forward pass</text>
+<text x="711" y="462" fill="#bcc8e5" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="14" font-weight="400" text-anchor="middle">sidecar serialises</text>
+<path d="M786 409 H796 V347 H808" fill="none" stroke="#4B67B4" stroke-width="1.7" stroke-linecap="round" marker-end="url(#arr)"/>
+<line x1="796" y1="409" x2="808" y2="409" stroke="#4B67B4" stroke-width="1.7" marker-end="url(#arr)"/>
+<path d="M796 409 V471 H808" fill="none" stroke="#4B67B4" stroke-width="1.7" stroke-linecap="round" marker-end="url(#arr)"/>
+<rect x="812" y="320" width="222" height="54" rx="18" fill="#ffffff" stroke="#ddd8ec" stroke-width="1.3"/>
+<rect x="812" y="320" width="3.5" height="54" rx="1.75" fill="#4B67B4"/>
+<text x="828" y="342" fill="#4B67B4" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="18" font-weight="700" text-anchor="start">noul</text>
+<rect x="812" y="382" width="222" height="54" rx="18" fill="#ffffff" stroke="#ddd8ec" stroke-width="1.3"/>
+<rect x="812" y="382" width="3.5" height="54" rx="1.75" fill="#6F65B9"/>
+<text x="828" y="413" fill="#6F65B9" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="18" font-weight="700" text-anchor="start">choice</text>
+<rect x="812" y="444" width="222" height="54" rx="18" fill="#ffffff" stroke="#ddd8ec" stroke-width="1.3"/>
+<rect x="812" y="444" width="3.5" height="54" rx="1.75" fill="#2D827B"/>
+<text x="828" y="475" fill="#2D827B" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="18" font-weight="700" text-anchor="start">score</text>
+<text x="890" y="342" fill="#171a28" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="17" font-weight="700" text-anchor="start">0.5457</text>
+<rect x="890" y="352" width="128" height="7" rx="3.5" fill="#e9e5f2"/>
+<rect x="890" y="352" width="42" height="7" rx="3.5" fill="#7d8497" opacity="0.45"/>
+<rect x="934" y="352" width="42" height="7" rx="3.5" fill="#4B67B4" opacity="0.55"/>
+<rect x="978" y="352" width="40" height="7" rx="3.5" fill="#2C8A62" opacity="0.45"/>
+<circle cx="959.8" cy="355.5" r="5.4" fill="#ffffff" stroke="#4B67B4" stroke-width="2"/>
+<circle cx="959.8" cy="355.5" r="2.1" fill="#4B67B4"/>
+<rect x="890" y="395" width="82" height="28" rx="14.0" fill="#6F65B9"/>
+<text x="931.0" y="413.7" fill="#ffffff" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="700" text-anchor="middle">refund</text>
+<text x="1030" y="414" fill="#7d8497" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="400" text-anchor="end">1 of 3</text>
+<line x1="890" y1="474" x2="1018" y2="474" stroke="#e9e5f2" stroke-width="3" stroke-linecap="round"/>
+<line x1="890" y1="474" x2="986" y2="474" stroke="#2D827B" stroke-width="3" stroke-linecap="round"/>
+<circle cx="890" cy="474" r="3.2" fill="#2D827B"/>
+<circle cx="922" cy="474" r="3.2" fill="#2D827B"/>
+<circle cx="954" cy="474" r="3.2" fill="#2D827B"/>
+<circle cx="986" cy="474" r="3.2" fill="#2D827B"/>
+<circle cx="1018" cy="474" r="3.2" fill="#2D827B"/>
+<circle cx="986" cy="474" r="6.8" fill="#ffffff" stroke="#2D827B" stroke-width="2"/>
+<circle cx="986" cy="474" r="2.5" fill="#2D827B"/>
+<line x1="636" y1="518" x2="1034" y2="518" stroke="#e9e5f2" stroke-width="1.1"/>
+<text x="636" y="540" fill="#7d8497" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="14" font-weight="400" text-anchor="start">plan_questions() feeds both routes</text>
+<text x="1034" y="540" fill="#4B67B4" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="700" text-anchor="end">answers return typed</text>
+<line x1="44" y1="584" x2="1056" y2="584" stroke="#e9e5f2" stroke-width="1.3"/>
+<text x="44" y="608" fill="#7d8497" font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="14" font-weight="400" text-anchor="start">non-loopback sidecarUrl is allowed; it warns once and the startup line says LEAVES THIS MACHINE.</text>
+<text x="1056" y="608" fill="#7d8497" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="400" text-anchor="end">lifecycle  never | attach | spawn</text>
+<text x="44" y="634" fill="#4b5265" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="400" text-anchor="start">Routes  laya_ask / ctx.laya.ask → POST /ask   ·   laya_plan / ctx.laya.plan → POST /plan</text>
+<text x="1056" y="634" fill="#7d8497" font-family="'Consolas','SFMono-Regular','Menlo',ui-monospace,monospace" font-size="14" font-weight="400" text-anchor="end">health / capabilities  GET</text>
+</svg>

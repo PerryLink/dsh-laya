@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-laya-flow-dark.svg">
-  <img src="docs/assets/dsh-laya-flow-light.svg" width="100%" alt="Fluxo de dados do dsh-laya: laya_ask → POST /ask → laya-mcp serve → noul/choice/score; laya_plan → POST /plan sem passagem direta; ctx.laya também oferece ask, plan, health e capabilities">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-laya-hero-en-dark.webp">
+  <img src="docs/assets/dsh-laya-hero-en-light.webp" width="100%" alt="Instrumento local de decisão dsh-laya: à esquerda, título e valor; à direita, o painel laya-mcp serve em loopback recebe state + questions e devolve três leituras tipadas: noul 0.5457 com sua faixa de incerteza, um rótulo choice escolhido e uma posição score em uma escala ordenada, com state STAYS LOCAL no rodapé.">
 </picture>
 
 # dsh-laya
@@ -38,6 +38,15 @@ Laya é um modelo que só responde a perguntas tipadas: `noul` devolve a probabi
 Ele contribui com duas coisas para o harness: o serviço `ctx.laya` (`ask`, `plan`, `health`, `capabilities`, `sidecarUrl`, `loopback`) e duas ferramentas visíveis para o modelo, `laya_ask` e `laya_plan`. Assim, código do host e outros plugins podem pedir um julgamento sem uma ida e volta ao modelo, e o modelo pode verificar se um lote de perguntas cabe antes de gastar uma passagem.
 
 O endpoint padrão é `http://127.0.0.1:8787`: o estado não sai desta máquina. Apontar `sidecarUrl` para outro lugar é permitido, mas a linha de inicialização nomeia o destino — esse é o momento em que a história de privacidade muda.
+
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-laya-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-laya-flow-v5-light.svg" width="100%" alt="Estrutura do dsh-laya: o Host e o sidecar Python em lados opostos de um limite de loopback. Acima, laya_plan cruza para /plan para a aritmética de orçamento sem passagem direta; abaixo, laya_ask cruza para /ask em uma passagem direta e se abre em três saídas tipadas: probabilidade noul com sua faixa, um rótulo choice e uma posição na escala score. O padrão é 127.0.0.1:8787, então state STAYS LOCAL.">
+</picture>
+
+</div>
 
 ## Instalação em três passos
 
