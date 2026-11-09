@@ -394,3 +394,5 @@ Topics：`dsh-plugin`、`deepseek-harness`、`cordis`、`laya`、`decision-model
 [LICENSE](LICENSE)（Apache License 2.0）© 2026 dsh-laya contributors。Laya 由 Convai Innovations 以 Apache-2.0 发布；这是一个独立集成，与该上游项目无关联，也未获其背书。
 
 <p align="center"><sub>Apache-2.0 · 社区插件，与 DeepSeek 无关。</sub></p>
+
+<p align="center"><sub>工具链：<a href="https://github.com/PerryLink/dsh-plugin-guide">dsh-plugin-guide</a> · <a href="https://github.com/PerryLink/dsh-standards">dsh-standards</a> · <a href="https://github.com/PerryLink/dsh-plugin-start">dsh-plugin-start</a></sub></p>
