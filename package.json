@@ -29,6 +29,11 @@
     "SKILL.md",
     "cordis.patch.yml",
     "README.md",
+    "README.en.md",
+    "README.es.md",
+    "README.pt.md",
+    "README.hi.md",
+    "docs/assets/*",
     "LICENSE"
   ],
   "repository": {
