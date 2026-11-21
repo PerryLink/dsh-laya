@@ -46,6 +46,11 @@ Laya एक ऐसा मॉडल है जो केवल टाइप्ड
   <img src="docs/assets/dsh-laya-flow-v5-light.svg" width="100%" alt="dsh-laya संरचना: एक लूपबैक सीमा के दोनों ओर Host और Python sidecar। ऊपर laya_plan बिना फ़ॉरवर्ड पास के /plan से बजट अंकगणित करता है; नीचे laya_ask एक फ़ॉरवर्ड पास के लिए /ask पर जाता है और तीन टाइप्ड निर्गमों में बँटता है — noul संभावना और उसका बैंड, एक choice लेबल, और score क्रमबद्ध स्केल पर स्थिति। डिफ़ॉल्ट 127.0.0.1:8787 है, इसलिए state STAYS LOCAL।">
 </picture>
 
+![dsh-laya का असली टर्मिनल रन](docs/assets/dsh-laya-demo.gif)
+
+*इस रिपॉज़िटरी के असली रन का एनिमेटेड रीप्ले (2026-11-21)।*
+
+
 </div>
 
 ## तीन चरणों में शुरुआत

@@ -50,6 +50,11 @@ Laya 是一个只回答有类型判断的模型：`noul` 给出「真」的概�
 
 ## 三步上手
 
+
+![dsh-laya 真实终端运行](docs/assets/dsh-laya-demo.gif)
+
+*本仓库真实运行的动图回放（2026-11-21）。*
+
 两块，因为 Laya 是 PyTorch，无法住在一个 Node 插件里。
 
 1. **先起 sidecar**（真正持有模型的那一半）：

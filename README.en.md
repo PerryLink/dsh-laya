@@ -50,6 +50,11 @@ The default endpoint is `http://127.0.0.1:8787`: the state does not leave this m
 
 ## Three-step setup
 
+
+![dsh-laya: real terminal run](docs/assets/dsh-laya-demo.gif)
+
+*Animated replay of a real run in this repository (2026-11-21).*
+
 Two pieces, because Laya is PyTorch and cannot live inside a Node plugin.
 
 1. **Start the sidecar** (the half that actually holds the model):

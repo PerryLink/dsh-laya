@@ -46,6 +46,11 @@ El endpoint por defecto es `http://127.0.0.1:8787`: el estado no sale de esta m�
   <img src="docs/assets/dsh-laya-flow-v5-light.svg" width="100%" alt="Estructura de dsh-laya: el Host y el sidecar de Python a ambos lados de un límite de loopback. Arriba, laya_plan cruza a /plan para la aritmética de presupuesto sin pase hacia delante; abajo, laya_ask cruza a /ask para un pase hacia delante y se abre en tres salidas tipadas: probabilidad noul con su banda, una etiqueta choice y una posición en la escala score. Por defecto es 127.0.0.1:8787, así que state STAYS LOCAL.">
 </picture>
 
+![dsh-laya: ejecución real de terminal](docs/assets/dsh-laya-demo.gif)
+
+*Repetición animada de una ejecución real de este repositorio (2026-11-21).*
+
+
 </div>
 
 ## Instalación en tres pasos
