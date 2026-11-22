@@ -11,6 +11,8 @@
 
 Laya के टाइप्ड निर्णय (`noul`, `choice`, `score`) DeepSeek Harness में पहले दर्जे की Cordis सेवा `ctx.laya` और दो मॉडल-दृश्य टूल `laya_ask` / `laya_plan` के रूप में आते हैं: यह गद्य नहीं लिखता, केवल लेबल, कैलिब्रेटेड संभावनाएँ और स्केल पर स्थिति देता है।
 
+अंतिम सत्यापन: DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [स्थापना](#तीन-चरणों-में-शुरुआत) · [कॉन्फ़िगरेशन](#कॉन्फ़िगरेशन) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -49,7 +51,6 @@ Laya एक ऐसा मॉडल है जो केवल टाइप्ड
 ![dsh-laya का असली टर्मिनल रन](docs/assets/dsh-laya-demo.gif)
 
 *इस रिपॉज़िटरी के असली रन का एनिमेटेड रीप्ले (2026-11-21)।*
-
 
 </div>
 
@@ -303,7 +304,7 @@ Windows पर कंसोल स्क्रिप्ट `.cmd` शिम ह�
 
 ## इकोसिस्टम और गुणवत्ता
 
-- [npm पैकेज](https://www.npmjs.com/package/dsh-laya) (अभी 0.1.5)
+- [npm पैकेज](https://www.npmjs.com/package/dsh-laya) (अभी 0.1.6)
 - [dshfind प्लगइन पेज](https://dshfind.com/plugins/PerryLink/dsh-laya) (इंस्टॉल और रैंकिंग; बैज का वही स्रोत)
 - [Laya upstream](https://github.com/NandhaKishorM/laya) (मॉडल वेट और `laya-mcp` sidecar का स्रोत; Apache-2.0)
 - **CI**: [`.github/workflows/ci.yml`](.github/workflows/ci.yml) दो OS × दो Node संस्करणों पर `npm test` और `npm run check:readmes` चलाता है, जानबूझकर बिना `npm install` चरण के — परीक्षण केवल शुद्ध सतह (`plan.js`, `sidecar.js`) कवर करते हैं और उन्हें माउंटेड harness की ज़रूरत नहीं।

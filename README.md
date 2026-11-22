@@ -11,6 +11,8 @@
 
 Laya 的有类型决策（`noul`、`choice`、`score`）以一等 Cordis 服务 `ctx.laya` 与两个模型可见工具 `laya_ask` / `laya_plan` 接入 DeepSeek Harness：它不写散文，只回标签、标定过的概率与刻度位置。
 
+最近一次核验：DeepSeek Harness `dsh-v0.2.3-alpha.1`（2026-11-22）。
+
 [安装](#三步上手) · [配置](#配置) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -49,7 +51,6 @@ Laya 是一个只回答有类型判断的模型：`noul` 给出「真」的概�
 </div>
 
 ## 三步上手
-
 
 ![dsh-laya 真实终端运行](docs/assets/dsh-laya-demo.gif)
 
@@ -303,7 +304,7 @@ profile patch 覆盖示例：
 
 ## 生态与质量
 
-- [npm 包](https://www.npmjs.com/package/dsh-laya)（当前 0.1.5）
+- [npm 包](https://www.npmjs.com/package/dsh-laya)（当前 0.1.6）
 - [dshfind 插件页](https://dshfind.com/plugins/PerryLink/dsh-laya)（安装量与排名；徽章同源）
 - [Laya 上游仓库](https://github.com/NandhaKishorM/laya)（模型权重与 `laya-mcp` sidecar 的出处，Apache-2.0）
 - **CI**：[`.github/workflows/ci.yml`](.github/workflows/ci.yml) 在两个 OS × 两个 Node 上跑 `npm test` 与 `npm run check:readmes`；刻意没有 `npm install` 步骤——测试只覆盖纯函数面（`plan.js`、`sidecar.js`），不需要挂载 Harness。

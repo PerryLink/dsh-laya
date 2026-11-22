@@ -11,6 +11,8 @@
 
 Laya's typed decisions (`noul`, `choice`, `score`) arrive in DeepSeek Harness as a first-class Cordis service, `ctx.laya`, plus two model-visible tools, `laya_ask` and `laya_plan`: it writes no prose, only labels, calibrated probabilities, and scale positions.
 
+Last verified on DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [Install](#three-step-setup) · [Configuration](#configuration) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -49,7 +51,6 @@ The default endpoint is `http://127.0.0.1:8787`: the state does not leave this m
 </div>
 
 ## Three-step setup
-
 
 ![dsh-laya: real terminal run](docs/assets/dsh-laya-demo.gif)
 
@@ -303,7 +304,7 @@ Verified against the registration surface in `index.js` and `cordis.patch.yml`. 
 
 ## Ecosystem & quality
 
-- [npm package](https://www.npmjs.com/package/dsh-laya) (currently 0.1.5)
+- [npm package](https://www.npmjs.com/package/dsh-laya) (currently 0.1.6)
 - [dshfind plugin page](https://dshfind.com/plugins/PerryLink/dsh-laya) (installs and ranking; same source as the badge)
 - [Laya upstream](https://github.com/NandhaKishorM/laya) (the model weights and the `laya-mcp` sidecar; Apache-2.0)
 - **CI**: [`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs `npm test` and `npm run check:readmes` on two OSes × two Node versions, with deliberately no `npm install` step — the tests cover only the pure surface (`plan.js`, `sidecar.js`) and need no mounted harness.
