@@ -7,6 +7,8 @@
 
 # dsh-laya
 
+当前版本 `0.1.9`。
+
 **把「是/否、选哪个、打几分」变成一次本地前向传播——概率回到 Host，state 不出这台机器。**
 
 Laya 的有类型决策（`noul`、`choice`、`score`）以一等 Cordis 服务 `ctx.laya` 与两个模型可见工具 `laya_ask` / `laya_plan` 接入 DeepSeek Harness：它不写散文，只回标签、标定过的概率与刻度位置。

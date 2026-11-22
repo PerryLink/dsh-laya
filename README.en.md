@@ -7,6 +7,8 @@
 
 # dsh-laya
 
+Current version `0.1.9`.
+
 **Turn yes/no, which-one, and how-much into one local forward pass — probabilities come back to the host, and the state never leaves this machine.**
 
 Laya's typed decisions (`noul`, `choice`, `score`) arrive in DeepSeek Harness as a first-class Cordis service, `ctx.laya`, plus two model-visible tools, `laya_ask` and `laya_plan`: it writes no prose, only labels, calibrated probabilities, and scale positions.

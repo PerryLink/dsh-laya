@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Laya",
+    "description": "Turn yes/no, which-one, and how-much into one local forward pass — probabilities come back to the host, and the state never leaves this machine."
+  }
+}

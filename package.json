@@ -1,6 +1,6 @@
 {
   "name": "dsh-laya",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Laya typed decisions (noul / choice / score) as a first-class Cordis service and model-visible tools for DeepSeek Harness.",
   "keywords": [
     "dsh-plugin",
@@ -20,7 +20,8 @@
   "main": "./index.js",
   "exports": {
     ".": "./index.js",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
   },
   "files": [
     "index.js",
@@ -34,7 +35,9 @@
     "README.pt.md",
     "README.hi.md",
     "docs/assets/*",
-    "LICENSE"
+    "LICENSE",
+    "locale/*.json",
+    "icon.png"
   ],
   "repository": {
     "type": "git",
@@ -65,5 +68,10 @@
   "scripts": {
     "check:readmes": "node scripts/check-readme-sync.mjs",
     "test": "node --test"
+  },
+  "icon": "icon.png",
+  "author": {
+    "name": "PerryLink",
+    "url": "https://github.com/PerryLink"
   }
 }
