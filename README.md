@@ -16,7 +16,7 @@ Laya 的有类型决策（`noul`、`choice`、`score`）以一等 Cordis 服务 
 [安装](#三步上手) · [配置](#配置) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
-[![DSH](https://img.shields.io/badge/DSH-%E2%89%A50.1.7%20%3C0.3.0-4B67B4?style=flat-square&labelColor=2B3245)](#兼容性)
+[![DSH](https://img.shields.io/badge/DSH-%E2%89%A50.1.8%20%3C0.3.0-4B67B4?style=flat-square&labelColor=2B3245)](#兼容性)
 [![npm](https://img.shields.io/npm/v/dsh-laya?style=flat-square&labelColor=2B3245&color=CB3837)](https://www.npmjs.com/package/dsh-laya)
 [![CI](https://img.shields.io/github/actions/workflow/status/PerryLink/dsh-laya/ci.yml?branch=main&label=CI&style=flat-square&labelColor=2B3245)](https://github.com/PerryLink/dsh-laya/actions/workflows/ci.yml)
 [![Node](https://img.shields.io/badge/node-%5E22.19%20%7C%7C%20%3E%3D24-339933?style=flat-square&labelColor=2B3245)](#兼容性)
@@ -296,7 +296,7 @@ profile patch 覆盖示例：
 
 | 维度 | 状态 |
 |---|---|
-| Harness | 已在 `dsh-v0.1.7-alpha.1` 上验证（本构建所针对的宿主版本）；要求 `>=0.1.7-alpha.1 <0.3.0`（`package.json` 的 `engines.dsh`） |
+| Harness | 已在 `dsh-v0.1.8-alpha.1` 上验证（本构建所针对的宿主版本）；要求 `>=0.1.8-alpha.1 <0.3.0`（`package.json` 的 `engines.dsh`） |
 | Node | `^22.19.0 \|\| >=24.0.0`（CI 在 Node 22 与 24 上跑） |
 | 平台 | 任何 DSH 可运行处，外加一个本机 Python sidecar（PyTorch）；已在 RTX 5060 / CUDA 上验证，CPU 回退会被报告为 `degraded` |
 | 模型 | Laya checkpoint（`noul` / `choice` / `score`）；不是生成模型，不支持写文本、代码或命令 |
@@ -304,7 +304,7 @@ profile patch 覆盖示例：
 
 ## 生态与质量
 
-- [npm 包](https://www.npmjs.com/package/dsh-laya)（当前 0.1.7）
+- [npm 包](https://www.npmjs.com/package/dsh-laya)（当前 0.1.8）
 - [dshfind 插件页](https://dshfind.com/plugins/PerryLink/dsh-laya)（安装量与排名；徽章同源）
 - [Laya 上游仓库](https://github.com/NandhaKishorM/laya)（模型权重与 `laya-mcp` sidecar 的出处，Apache-2.0）
 - **CI**：[`.github/workflows/ci.yml`](.github/workflows/ci.yml) 在两个 OS × 两个 Node 上跑 `npm test` 与 `npm run check:readmes`；刻意没有 `npm install` 步骤——测试只覆盖纯函数面（`plan.js`、`sidecar.js`），不需要挂载 Harness。

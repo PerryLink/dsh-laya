@@ -16,7 +16,7 @@ Last verified on DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
 [Install](#three-step-setup) · [Configuration](#configuration) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
-[![DSH](https://img.shields.io/badge/DSH-%E2%89%A50.1.7%20%3C0.3.0-4B67B4?style=flat-square&labelColor=2B3245)](#compatibility)
+[![DSH](https://img.shields.io/badge/DSH-%E2%89%A50.1.8%20%3C0.3.0-4B67B4?style=flat-square&labelColor=2B3245)](#compatibility)
 [![npm](https://img.shields.io/npm/v/dsh-laya?style=flat-square&labelColor=2B3245&color=CB3837)](https://www.npmjs.com/package/dsh-laya)
 [![CI](https://img.shields.io/github/actions/workflow/status/PerryLink/dsh-laya/ci.yml?branch=main&label=CI&style=flat-square&labelColor=2B3245)](https://github.com/PerryLink/dsh-laya/actions/workflows/ci.yml)
 [![Node](https://img.shields.io/badge/node-%5E22.19%20%7C%7C%20%3E%3D24-339933?style=flat-square&labelColor=2B3245)](#compatibility)
@@ -296,7 +296,7 @@ Verified against the registration surface in `index.js` and `cordis.patch.yml`. 
 
 | Surface | Status |
 |---|---|
-| Harness | Verified against `dsh-v0.1.7-alpha.1` (the host release this build targets); requires `>=0.1.7-alpha.1 <0.3.0` (`engines.dsh` in `package.json`) |
+| Harness | Verified against `dsh-v0.1.8-alpha.1` (the host release this build targets); requires `>=0.1.8-alpha.1 <0.3.0` (`engines.dsh` in `package.json`) |
 | Node | `^22.19.0 \|\| >=24.0.0` (CI runs Node 22 and 24) |
 | Platforms | Anywhere DSH runs, plus a local Python sidecar (PyTorch); verified on an RTX 5060 with CUDA, and a CPU fallback is reported as `degraded` |
 | Model | A Laya checkpoint (`noul` / `choice` / `score`); not a generative model, and it cannot write text, code, or commands |
@@ -304,7 +304,7 @@ Verified against the registration surface in `index.js` and `cordis.patch.yml`. 
 
 ## Ecosystem & quality
 
-- [npm package](https://www.npmjs.com/package/dsh-laya) (currently 0.1.7)
+- [npm package](https://www.npmjs.com/package/dsh-laya) (currently 0.1.8)
 - [dshfind plugin page](https://dshfind.com/plugins/PerryLink/dsh-laya) (installs and ranking; same source as the badge)
 - [Laya upstream](https://github.com/NandhaKishorM/laya) (the model weights and the `laya-mcp` sidecar; Apache-2.0)
 - **CI**: [`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs `npm test` and `npm run check:readmes` on two OSes × two Node versions, with deliberately no `npm install` step — the tests cover only the pure surface (`plan.js`, `sidecar.js`) and need no mounted harness.

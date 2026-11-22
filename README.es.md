@@ -16,7 +16,7 @@ Las decisiones tipadas de Laya (`noul`, `choice`, `score`) llegan a DeepSeek Har
 [Instalar](#instalación-en-tres-pasos) · [Configuración](#configuración) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
-[![DSH](https://img.shields.io/badge/DSH-%E2%89%A50.1.7%20%3C0.3.0-4B67B4?style=flat-square&labelColor=2B3245)](#compatibilidad)
+[![DSH](https://img.shields.io/badge/DSH-%E2%89%A50.1.8%20%3C0.3.0-4B67B4?style=flat-square&labelColor=2B3245)](#compatibilidad)
 [![npm](https://img.shields.io/npm/v/dsh-laya?style=flat-square&labelColor=2B3245&color=CB3837)](https://www.npmjs.com/package/dsh-laya)
 [![CI](https://img.shields.io/github/actions/workflow/status/PerryLink/dsh-laya/ci.yml?branch=main&label=CI&style=flat-square&labelColor=2B3245)](https://github.com/PerryLink/dsh-laya/actions/workflows/ci.yml)
 [![Node](https://img.shields.io/badge/node-%5E22.19%20%7C%7C%20%3E%3D24-339933?style=flat-square&labelColor=2B3245)](#compatibilidad)
@@ -296,7 +296,7 @@ Verificado contra la superficie de registro de `index.js` y `cordis.patch.yml`. 
 
 | Dimensión | Estado |
 |---|---|
-| Harness | Verificado contra `dsh-v0.1.7-alpha.1` (la versión del host a la que apunta esta build); requiere `>=0.1.7-alpha.1 <0.3.0` (`engines.dsh` en `package.json`) |
+| Harness | Verificado contra `dsh-v0.1.8-alpha.1` (la versión del host a la que apunta esta build); requiere `>=0.1.8-alpha.1 <0.3.0` (`engines.dsh` en `package.json`) |
 | Node | `^22.19.0 \|\| >=24.0.0` (CI ejecuta Node 22 y 24) |
 | Plataformas | Donde corra DSH, más un sidecar local de Python (PyTorch); verificado en una RTX 5060 con CUDA, y la caída a CPU se informa como `degraded` |
 | Modelo | Un checkpoint de Laya (`noul` / `choice` / `score`); no es un modelo generativo y no escribe texto, código ni comandos |
@@ -304,7 +304,7 @@ Verificado contra la superficie de registro de `index.js` y `cordis.patch.yml`. 
 
 ## Ecosistema y calidad
 
-- [Paquete npm](https://www.npmjs.com/package/dsh-laya) (actualmente 0.1.7)
+- [Paquete npm](https://www.npmjs.com/package/dsh-laya) (actualmente 0.1.8)
 - [Página en dshfind](https://dshfind.com/plugins/PerryLink/dsh-laya) (instalaciones y ranking; misma fuente que la insignia)
 - [Upstream de Laya](https://github.com/NandhaKishorM/laya) (los pesos del modelo y el sidecar `laya-mcp`; Apache-2.0)
 - **CI**: [`.github/workflows/ci.yml`](.github/workflows/ci.yml) ejecuta `npm test` y `npm run check:readmes` en dos sistemas × dos versiones de Node, deliberadamente sin paso de `npm install`: las pruebas solo cubren la superficie pura (`plan.js`, `sidecar.js`) y no necesitan un harness montado.

@@ -16,7 +16,7 @@ Laya के टाइप्ड निर्णय (`noul`, `choice`, `score`) De
 [स्थापना](#तीन-चरणों-में-शुरुआत) · [कॉन्फ़िगरेशन](#कॉन्फ़िगरेशन) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
-[![DSH](https://img.shields.io/badge/DSH-%E2%89%A50.1.7%20%3C0.3.0-4B67B4?style=flat-square&labelColor=2B3245)](#संगतता)
+[![DSH](https://img.shields.io/badge/DSH-%E2%89%A50.1.8%20%3C0.3.0-4B67B4?style=flat-square&labelColor=2B3245)](#संगतता)
 [![npm](https://img.shields.io/npm/v/dsh-laya?style=flat-square&labelColor=2B3245&color=CB3837)](https://www.npmjs.com/package/dsh-laya)
 [![CI](https://img.shields.io/github/actions/workflow/status/PerryLink/dsh-laya/ci.yml?branch=main&label=CI&style=flat-square&labelColor=2B3245)](https://github.com/PerryLink/dsh-laya/actions/workflows/ci.yml)
 [![Node](https://img.shields.io/badge/node-%5E22.19%20%7C%7C%20%3E%3D24-339933?style=flat-square&labelColor=2B3245)](#संगतता)
@@ -296,7 +296,7 @@ Windows पर कंसोल स्क्रिप्ट `.cmd` शिम ह�
 
 | पहलू | स्थिति |
 |---|---|
-| Harness | `dsh-v0.1.7-alpha.1` के विरुद्ध सत्यापित (यही वह होस्ट रिलीज़ है जिसके लिए यह बिल्ड है); `>=0.1.7-alpha.1 <0.3.0` चाहिए (`package.json` में `engines.dsh`) |
+| Harness | `dsh-v0.1.8-alpha.1` के विरुद्ध सत्यापित (यही वह होस्ट रिलीज़ है जिसके लिए यह बिल्ड है); `>=0.1.8-alpha.1 <0.3.0` चाहिए (`package.json` में `engines.dsh`) |
 | Node | `^22.19.0 \|\| >=24.0.0` (CI Node 22 और 24 पर चलता है) |
 | प्लेटफ़ॉर्म | जहाँ DSH चले, साथ में स्थानीय Python sidecar (PyTorch); RTX 5060 / CUDA पर सत्यापित, और CPU पर गिरना `degraded` के रूप में सूचित होता है |
 | मॉडल | Laya चेकपॉइंट (`noul` / `choice` / `score`); यह जनरेटिव मॉडल नहीं है और टेक्स्ट, कोड या कमांड नहीं लिख सकता |
@@ -304,7 +304,7 @@ Windows पर कंसोल स्क्रिप्ट `.cmd` शिम ह�
 
 ## इकोसिस्टम और गुणवत्ता
 
-- [npm पैकेज](https://www.npmjs.com/package/dsh-laya) (अभी 0.1.7)
+- [npm पैकेज](https://www.npmjs.com/package/dsh-laya) (अभी 0.1.8)
 - [dshfind प्लगइन पेज](https://dshfind.com/plugins/PerryLink/dsh-laya) (इंस्टॉल और रैंकिंग; बैज का वही स्रोत)
 - [Laya upstream](https://github.com/NandhaKishorM/laya) (मॉडल वेट और `laya-mcp` sidecar का स्रोत; Apache-2.0)
 - **CI**: [`.github/workflows/ci.yml`](.github/workflows/ci.yml) दो OS × दो Node संस्करणों पर `npm test` और `npm run check:readmes` चलाता है, जानबूझकर बिना `npm install` चरण के — परीक्षण केवल शुद्ध सतह (`plan.js`, `sidecar.js`) कवर करते हैं और उन्हें माउंटेड harness की ज़रूरत नहीं।
