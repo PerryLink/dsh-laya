@@ -304,7 +304,7 @@ profile patch 覆盖示例：
 
 ## 生态与质量
 
-- [npm 包](https://www.npmjs.com/package/dsh-laya)（当前 0.1.6）
+- [npm 包](https://www.npmjs.com/package/dsh-laya)（当前 0.1.7）
 - [dshfind 插件页](https://dshfind.com/plugins/PerryLink/dsh-laya)（安装量与排名；徽章同源）
 - [Laya 上游仓库](https://github.com/NandhaKishorM/laya)（模型权重与 `laya-mcp` sidecar 的出处，Apache-2.0）
 - **CI**：[`.github/workflows/ci.yml`](.github/workflows/ci.yml) 在两个 OS × 两个 Node 上跑 `npm test` 与 `npm run check:readmes`；刻意没有 `npm install` 步骤——测试只覆盖纯函数面（`plan.js`、`sidecar.js`），不需要挂载 Harness。

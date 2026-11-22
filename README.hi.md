@@ -304,7 +304,7 @@ Windows पर कंसोल स्क्रिप्ट `.cmd` शिम ह�
 
 ## इकोसिस्टम और गुणवत्ता
 
-- [npm पैकेज](https://www.npmjs.com/package/dsh-laya) (अभी 0.1.6)
+- [npm पैकेज](https://www.npmjs.com/package/dsh-laya) (अभी 0.1.7)
 - [dshfind प्लगइन पेज](https://dshfind.com/plugins/PerryLink/dsh-laya) (इंस्टॉल और रैंकिंग; बैज का वही स्रोत)
 - [Laya upstream](https://github.com/NandhaKishorM/laya) (मॉडल वेट और `laya-mcp` sidecar का स्रोत; Apache-2.0)
 - **CI**: [`.github/workflows/ci.yml`](.github/workflows/ci.yml) दो OS × दो Node संस्करणों पर `npm test` और `npm run check:readmes` चलाता है, जानबूझकर बिना `npm install` चरण के — परीक्षण केवल शुद्ध सतह (`plan.js`, `sidecar.js`) कवर करते हैं और उन्हें माउंटेड harness की ज़रूरत नहीं।

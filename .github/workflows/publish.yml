@@ -1,0 +1,60 @@
+name: publish
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        if: ${{ hashFiles('pnpm-lock.yaml') != '' }}
+        with:
+          version: 11.28.5
+      - uses: actions/setup-node@v4
+        if: hashFiles('pnpm-lock.yaml') != ''
+        with:
+          node-version: 24
+          cache: pnpm
+      - uses: actions/setup-node@v4
+        if: hashFiles('pnpm-lock.yaml') == ''
+        with:
+          node-version: 24
+      - name: Install
+        shell: bash
+        run: |
+          if [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile
+          elif [ -f package-lock.json ]; then npm ci
+          else npm install --no-audit --no-fund
+          fi
+      - name: Gate
+        shell: bash
+        run: |
+          npm run build --if-present
+          npm run typecheck --if-present
+          npm run verify:package --if-present
+          npm test --if-present
+      - name: Publish to npm
+        shell: bash
+        run: |
+          v="$(node -p "require('./package.json').version")"
+          test "${GITHUB_REF_NAME}" = "v$v"
+          npm publish --provenance --access public
+  release:
+    needs: publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" --generate-notes

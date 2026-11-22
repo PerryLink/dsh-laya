@@ -378,7 +378,7 @@ def hero(lang: str, skin: str) -> Image.Image:
     foot_font = fnt("reg", 18)
     text(draw, 92, 552, c["footer"], foot_font, rgb(s["muted"]))
     ver_font = fnt("mono", 17)
-    text(draw, 720, 551, "v0.1.6", ver_font, rgb(s["muted"]), anchor="rs")
+    text(draw, 720, 551, "v0.1.7", ver_font, rgb(s["muted"]), anchor="rs")
 
     # ---- right instrument -------------------------------------------------
     px, py, pw, ph = 788, 40, 572, 492
@@ -593,7 +593,7 @@ def flow_svg(skin: str) -> str:
     out.append(T(44, 80,
                  'Two surfaces, two routes, one boundary: budget preflight above; one forward pass below; three typed exits.',
                  16, body))
-    out.append(T(1056, 50, 'v0.1.6 · DSH plugin', 14, muted, mono=True, anchor='end'))
+    out.append(T(1056, 50, 'v0.1.7 · DSH plugin', 14, muted, mono=True, anchor='end'))
     out.append(f'<line x1="44" y1="100" x2="1056" y2="100" stroke="{line}" stroke-width="1.4"/>')
 
     # host panel

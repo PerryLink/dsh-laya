@@ -304,7 +304,7 @@ Verificado contra a superfície de registro em `index.js` e `cordis.patch.yml`. 
 
 ## Ecossistema e qualidade
 
-- [Pacote npm](https://www.npmjs.com/package/dsh-laya) (atualmente 0.1.6)
+- [Pacote npm](https://www.npmjs.com/package/dsh-laya) (atualmente 0.1.7)
 - [Página no dshfind](https://dshfind.com/plugins/PerryLink/dsh-laya) (instalações e ranking; mesma fonte do selo)
 - [Upstream do Laya](https://github.com/NandhaKishorM/laya) (os pesos do modelo e o sidecar `laya-mcp`; Apache-2.0)
 - **CI**: [`.github/workflows/ci.yml`](.github/workflows/ci.yml) executa `npm test` e `npm run check:readmes` em dois sistemas × duas versões de Node, deliberadamente sem etapa de `npm install`: os testes cobrem apenas a superfície pura (`plan.js`, `sidecar.js`) e não precisam de um harness montado.
